@@ -29,6 +29,7 @@ const Card = ({ api, banyakData, title, title2 }) => {
                 <span className="sr-only">View</span>
               </Link>
               <Image
+                unoptimized
                 alt={data.title}
                 className="object-cover object-center w-full aspect-video"
                 height={225}

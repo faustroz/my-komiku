@@ -36,7 +36,7 @@ const WatchListButton = ({
           <Bookmarks
             onClick={handleCollection}
             size={15}
-            className="text-dark-text"
+            className="text-dark-text" 
           />
           <span className="ml-2">Add to watchlist</span>
         </button>
