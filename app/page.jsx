@@ -23,10 +23,10 @@ const Page = async () => {
         <Card api={manga} banyakData={4} title="Top Manga" title2="View All" />
       </section>
       <section>
-        <Card api={manhwa} banyakData={4} title="Top Manga" />
+        <Card api={manhwa} banyakData={4} title="Top Manhwa" />
       </section>
       <section>
-        <Card api={manhua} banyakData={4} title="Top Manga" />
+        <Card api={manhua} banyakData={4} title="Top Manhua" />
       </section>
     </div>
   );
