@@ -17,9 +17,9 @@ const Page = async () => {
     where: { user_email: user.email },
   });
   return (
-    <div className="flex flex-col bg-light-background dark:bg-dark-background">
+    <div className="flex flex-col">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
-        <div className="grid justify-center items-center h-full gap-4 md:grid-cols-[150px_1fr] lg:grid-cols-[200px_1fr] ">
+        <div className="grid justify-center items-center h-full gap-4 md:grid-cols-[150px_1fr] lg:grid-cols-[200px_1fr]">
           <div className="flex flex-col items-center">
             <div className="flex justify-center">
               <Image
@@ -40,20 +40,20 @@ const Page = async () => {
           </div>
         </div>
         <Card>
-          <CardHeader className="text-light-text dark:text-dark-text">
+          <CardHeader className="dark:text-dark-text">
             <CardTitle>Watchlist</CardTitle>
             <CardDescription>Series you want to watch</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 ">
+            <div className="grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-4">
               {watchlist.map((watch, index) => {
                 return (
                   <Card key={index}>
                     <Link href="/">
-                      <CardContent className="p-2 ">
+                      <CardContent className="p-2">
                         <Image
                           alt="Thumbnail"
-                          className="overflow-hidden rounded-lg object-cover object-center"
+                          className="overflow-hidden rounded-lg object-cover object-center w-full h-full"
                           height="169"
                           src={watch.comic_image}
                           width="300"
