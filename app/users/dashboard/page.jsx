@@ -1,12 +1,4 @@
 import Link from "next/link";
-import {
-  CardTitle,
-  CardDescription,
-  CardHeader,
-  CardContent,
-  CardFooter,
-  Card,
-} from "@/components/ui/card";
 import Image from "next/image";
 import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma";
@@ -25,13 +17,9 @@ const Page = async () => {
               <Image
                 alt="Avatar"
                 className="rounded-full"
-                height="150"
+                height={150}
                 src={user.image}
-                style={{
-                  aspectRatio: "150/150",
-                  objectFit: "cover",
-                }}
-                width="150"
+                width={150}
               />
             </div>
             <div className="space-y-2 mt-4 text-center text-light-text dark:text-dark-text">
@@ -39,38 +27,36 @@ const Page = async () => {
             </div>
           </div>
         </div>
-        <Card>
-          <CardHeader className="dark:text-dark-text">
-            <CardTitle>Watchlist</CardTitle>
-            <CardDescription>Series you want to watch</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-4">
-              {watchlist.map((watch, index) => {
-                return (
-                  <Card key={index}>
-                    <Link href="/">
-                      <CardContent className="p-2">
-                        <Image
-                          alt="Thumbnail"
-                          className="overflow-hidden rounded-lg object-cover object-center w-full h-full"
-                          height="169"
-                          src={watch.comic_image}
-                          width="300"
-                        />
-                      </CardContent>
-                      <CardFooter>
-                        <CardTitle className="text-sm font-medium dark:text-dark-text">
-                          {watch.comic_titles}
-                        </CardTitle>
-                      </CardFooter>
-                    </Link>
-                  </Card>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
+        <div>
+          <div className="p-4">
+            <h2 className="text-xl font-bold dark:text-dark-text">Watchlist</h2>
+            <p className="text-sm dark:text-dark-text">
+              Series you want to watch
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            {watchlist.map((watch, index) => (
+              <div className="rounded-lg overflow-hidden" key={index}>
+                <Link href="/">
+                  <div className="p-2">
+                    <Image
+                      alt="Thumbnail"
+                      className="rounded-lg object-cover object-center w-full"
+                      height={169}
+                      src={watch.comic_image}
+                      width={300}
+                    />
+                  </div>
+                  <div className="p-2 dark:text-dark-text">
+                    <h3 className="text-sm font-medium">
+                      {watch.comic_titles}
+                    </h3>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
       </main>
     </div>
   );
