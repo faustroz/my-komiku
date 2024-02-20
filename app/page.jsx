@@ -20,13 +20,31 @@ const Page = async () => {
     <div>
       <section>
         <Slider images={slider.data} />
-        <Card api={manga} banyakData={4} title="Top Manga" title2="View All" />
+        <Card
+          api={manga}
+          banyakData={4}
+          title="Top Manga"
+          titleHref="View All"
+          href="/popular"
+        />
       </section>
       <section>
-        <Card api={manhwa} banyakData={4} title="Top Manhwa" />
+        <Card
+          api={manhwa}
+          banyakData={4}
+          title="Top Manhwa"
+          titleHref="View All"
+          href="/popular"
+        />
       </section>
       <section>
-        <Card api={manhua} banyakData={4} title="Top Manhua" />
+        <Card
+          api={manhua}
+          banyakData={4}
+          title="Top Manhua"
+          titleHref="View All"
+          href="/popular"
+        />
       </section>
     </div>
   );

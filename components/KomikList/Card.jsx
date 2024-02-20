@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CaretRight } from "@phosphor-icons/react/dist/ssr";
 
-const Card = ({ api, banyakData, title, title2 }) => {
+const Card = ({ api, banyakData, title, titleHref, href }) => {
   return (
     <section className="w-full py-12">
       <div className="container grid grid-cols-2 gap-12 px-4 md:px-6 mb-4 text-light-text dark:text-dark-text">
@@ -11,9 +11,9 @@ const Card = ({ api, banyakData, title, title2 }) => {
         </div>
         <div className="flex items-center justify-end">
           <div className="grid gap-2">
-            <Link className="flex items-center gap-2 text-sm" href="/popular">
+            <Link className="flex items-center gap-2 text-sm" href={href}>
               <CaretRight className="w-4 h-4" />
-              {title2}
+              {titleHref}
             </Link>
           </div>
         </div>
