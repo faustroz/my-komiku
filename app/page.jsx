@@ -17,10 +17,10 @@ const Page = async () => {
   const randomizedManhua = manhua.data.sort(() => Math.random() - 0.5);
 
   return (
-    <div className="bg-light-background dark:bg-dark-background">
+    <div>
       <section>
         <Slider images={slider.data} />
-        <Card api={manga} banyakData={4} title="Top Manga" />
+        <Card api={manga} banyakData={4} title="Top Manga" title2="View All" />
       </section>
       <section>
         <Card api={manhwa} banyakData={4} title="Top Manga" />

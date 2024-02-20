@@ -12,8 +12,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="bg-dark-background">
-      <body className={montserrat.className} suppressHydrationWarning={true}>
+    <html lang="en">
+      <body
+        suppressHydrationWarning={true}
+        className={`${montserrat.className} bg-light-background dark:bg-dark-background`}
+      >
         <Navbar />
         {children}
       </body>

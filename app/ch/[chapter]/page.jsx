@@ -7,8 +7,10 @@ const Page = async ({ params }) => {
 
   return (
     <div className="container mx-auto py-8 bg-#010104">
-      <h1 className="text-3xl font-semibold mb-4 text-center text-white">{chapterDetail.data.title}</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <h1 className="text-3xl font-semibold mb-4 text-center text-white">
+        {chapterDetail.data.title}
+      </h1>
+      <div className="grid grid-cols-1 gap-4">
         {chapterDetail.data.image.map((imageUrl, index) => (
           <div key={index} className="relative">
             <Image

@@ -14,7 +14,7 @@ const Page = async ({ params: { endpoint } }) => {
   });
   return (
     <div className="flex flex-col min-h-screen ">
-      <div className="px-4 py-6 md:px-6 md:py-12 lg:py-16 flex-grow bg-dark-background">
+      <div className="px-4 py-6 md:px-6 md:py-12 lg:py-16 flex-grow bg-light-background dark:bg-dark-background">
         <div className="grid md:grid-cols-2 md:gap-6 lg:gap-12 max-w-6xl mx-auto items-start space-y-4 md:space-y-0 ">
           <div className="relative w-full h-100 md:h-auto ">
             <Image
@@ -26,7 +26,7 @@ const Page = async ({ params: { endpoint } }) => {
               height={500}
             />
           </div>
-          <div className="space-y-4 text-dark-text">
+          <div className="space-y-4 text-light-dark dark:text-dark-text">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tight">
                 {detailKomik.data.title}

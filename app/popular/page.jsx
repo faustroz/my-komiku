@@ -1,11 +1,11 @@
 "use client";
 
 import Card from "@/components/KomikList/Card";
-import Pagination from "@/components/Utilities/Pagination";
+import PaginationButton from "@/components/Utilities/Pagination";
 import { getComicResponse } from "@/libs/api-libs";
 import { useEffect, useState } from "react";
 
-const Page = () => {  
+const Page = () => {
   const [page, setPage] = useState(1);
   const [popular, setTopComic] = useState([]);
 
@@ -20,8 +20,8 @@ const Page = () => {
 
   return (
     <>
-      <Card api={popular} banyakData={32} />
-      <Pagination page={page} setPage={setPage} numberOfPage={"8"} />
+      <Card api={popular} banyakData={32} title={`Popular ${page} of 8`} />
+      <PaginationButton page={page} setPage={setPage} />
     </>
   );
 };

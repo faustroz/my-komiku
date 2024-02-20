@@ -1,4 +1,3 @@
-import Header from "@/components/KomikList/Header";
 import { getComicResponse } from "@/libs/api-libs";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,37 +12,44 @@ const Page = async ({ params }) => {
   const searchComic = await getComicResponse(`search/${decodedKeyword}`);
 
   return (
-    <div className="bg-dark-background">
-      <div className="container mx-auto px-2 pb-8 text-center mt-8">
-        <Header title={`Hasil Pencarian : ${decodedKeyword}`} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {searchComic.data.map((data, index) => {
-            const slug = createSlug(data.title);
-            return (
-              <Link
-                href={data.endpoint}
-                key={index}
-                className="rounded-lg shadow-md overflow-hidden block"
-              >
-                <div className="relative w-full h-60">
-                  <Image
-                    src={data.image}
-                    alt={data.title}
-                    className="object-cover rounded-t-lg"
-                    layout="fill"
-                  />
-                </div>
-                <div className="p-4 text-dark-text">
-                  <h2 className="text-xl font-semibold mb-2 overflow-hidden whitespace-nowrap">
-                    {data.title}
-                  </h2>
-                </div>
-              </Link>
-            );
-          })}
+    <section className="w-full py-12">
+      <div className="container grid grid-cols-2 gap-12 px-4 md:px-6 mb-4 text-light-text dark:text-dark-text">
+        <div className="flex flex-col gap-4 lg:gap-2">
+          <h1 className="text-3xl font-bold tracking-tight">
+            Hasil Pencarian : {decodedKeyword}
+          </h1>
         </div>
       </div>
-    </div>
+      <div className="container grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 md:px-6 drop-shadow-lg">
+        {searchComic.data.map((data, index) => {
+          const slug = createSlug(data.title);
+          return (
+            <div
+              className="relative group overflow-hidden rounded-lg md:basis-1/2 text-light-text dark:text-dark-text "
+              key={index}
+            >
+              <Link
+                className="absolute inset-0 z-10"
+                href={data.endpoint}
+              ></Link>
+              <Image
+                alt="Anime 1"
+                className="object-cover object-center w-full aspect-video"
+                height={225}
+                src={data.image}
+                priority={true}
+                width={400}
+              />
+              <div className="bg-white p-4 0">
+                <h3 className="font-semibold text-lg md:text-xl whitespace-nowrap overflow-hidden text-ellipsis">
+                  {data.title}
+                </h3>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 };
 

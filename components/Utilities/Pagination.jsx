@@ -1,4 +1,14 @@
-const Pagination = ({ page, setPage }) => {
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+const PaginationButton = ({ page, setPage }) => {
   const scrollTop = () => {
     scrollTo({
       behavior: "smooth",
@@ -15,27 +25,34 @@ const Pagination = ({ page, setPage }) => {
     scrollTop();
   };
   return (
-    <div className="flex justify-center items-center py-4 px-2 gap-4 text-xl bg-dark-background text-dark-text">
-      {page <= 1 ? null : (
-        <button
-          className="transition-all hover:text-dark-primary"
-          onClick={handlePrevPage}
-        >
-          Prev
-        </button>
-      )}
-      <p>{page} of 8</p>
-      {page >= 8 ? null : (
-        <button
-          className="transition-all hover:text-dark-primary"
-          onClick={handleNextPage}
-        >
-          {" "}
-          Next{" "}
-        </button>
-      )}
-    </div>
+    <Pagination>
+      <PaginationContent className="cursor-pointer text-light-text dark:text-dark-text">
+        {page <= 1 ? null : (
+          <>
+            <PaginationItem>
+              <PaginationPrevious onClick={handlePrevPage} />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          </>
+        )}
+        <PaginationItem>
+          <PaginationLink href="#">{page}</PaginationLink>
+        </PaginationItem>
+        {page >= 8 ? null : (
+          <>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext onClick={handleNextPage} />
+            </PaginationItem>
+          </>
+        )}
+      </PaginationContent>
+    </Pagination>
   );
 };
 
-export default Pagination;
+export default PaginationButton;
