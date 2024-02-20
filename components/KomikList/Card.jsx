@@ -29,11 +29,11 @@ const Card = ({ api, banyakData, title, title2 }) => {
                 <span className="sr-only">View</span>
               </Link>
               <Image
-                alt="Anime 1"
+                alt={data.title}
                 className="object-cover object-center w-full aspect-video"
                 height={225}
                 src={data.image}
-                priority={true}
+                loading="lazy"
                 width={400}
               />
               <div className="bg-white p-4 0">

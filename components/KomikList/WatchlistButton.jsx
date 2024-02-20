@@ -28,7 +28,9 @@ const WatchListButton = ({
   return (
     <>
       {isCreated ? (
-        <p className="text-dark-text">Success add to watchlist</p>
+        <p className="text-light-text dark:text-dark-text">
+          Success add to watchlist
+        </p>
       ) : (
         <button className="flex items-center ">
           <Bookmarks
