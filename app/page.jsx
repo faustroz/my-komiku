@@ -1,15 +1,12 @@
 import Card from "@/components/KomikList/Card";
 import Slider from "@/components/KomikList/Slider";
 import { getComicResponse } from "../libs/api-libs";
-import Header from "@/components/KomikList/Header";
 
 const Page = async () => {
   const manga = await getComicResponse("list", "filter=manga");
   const randomizedManga = manga.data.sort(() => Math.random() - 0.5);
 
   const slider = await getComicResponse("popular/page/1");
-  const sliderTitle = slider.data;
-
   const manhwa = await getComicResponse("list", "filter=manhwa");
   const randomizedManhwa = manhwa.data.sort(() => Math.random() - 0.5);
 
@@ -23,27 +20,27 @@ const Page = async () => {
         <Card
           api={manga}
           banyakData={4}
-          title="Top Manga"
+          title="Recommended Manga"
           titleHref="View All"
-          href="/popular"
+          href="/comic-list/manga"
         />
       </section>
       <section>
         <Card
           api={manhwa}
           banyakData={4}
-          title="Top Manhwa"
+          title="Recommended Manhwa"
           titleHref="View All"
-          href="/popular"
+          href="/comic-list/manhwa"
         />
       </section>
       <section>
         <Card
           api={manhua}
           banyakData={4}
-          title="Top Manhua"
+          title="Recommended Manhua"
           titleHref="View All"
-          href="/popular"
+          href="/comic-list/manhua "
         />
       </section>
     </div>

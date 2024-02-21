@@ -31,12 +31,13 @@ const WatchListButton = ({
         <p className="text-light-text dark:text-dark-text">
           Success add to watchlist
         </p>
+        
       ) : (
         <button className="flex items-center ">
           <Bookmarks
             onClick={handleCollection}
             size={15}
-            className="text-dark-text" 
+            className="text-dark-text"
           />
           <span className="ml-2">Add to watchlist</span>
         </button>

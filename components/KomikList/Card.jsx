@@ -1,20 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CaretRight } from "@phosphor-icons/react/dist/ssr";
-
-const Card = ({ api, banyakData, title, titleHref, href }) => {
+import Balancer from "react-wrap-balancer";
+const Card = ({ api, banyakData, title, href, titleHref }) => {
   return (
     <section className="w-full py-12">
       <div className="container grid grid-cols-2 gap-12 px-4 md:px-6 mb-4 text-light-text dark:text-dark-text">
-        <div className="flex flex-col gap-4 lg:gap-2">
-          <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
-        </div>
+        <Balancer>
+          <h1 className="text-3xl font-bold ">{title}</h1>
+        </Balancer>
         <div className="flex items-center justify-end">
           <div className="grid gap-2">
-            <Link className="flex items-center gap-2 text-sm" href={href}>
-              <CaretRight className="w-4 h-4" />
-              {titleHref}
-            </Link>
+            {href ? (
+              <Link
+                className="flex items-center gap-2 text-sm"
+                href={href ? href : ""}
+              >
+                <CaretRight className="w-4 h-4" />
+                {titleHref ? titleHref : null}
+              </Link>
+            ) : null}
           </div>
         </div>
       </div>
