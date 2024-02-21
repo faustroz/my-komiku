@@ -8,7 +8,11 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-const PaginationButton = ({ page, setPage }) => {
+const PaginationButton = ({ page, setPage, totalPost, postPerPage }) => {
+  let pages = [];
+  for (let i = 1; i <= Math.ceil(totalPost / postPerPage); i++) {
+    pages.push(i);
+  }
   const scrollTop = () => {
     scrollTo({
       behavior: "smooth",
@@ -16,7 +20,10 @@ const PaginationButton = ({ page, setPage }) => {
     });
   };
   const handleNextPage = () => {
-    setPage((prevState) => prevState + 1);
+    setPage((prevState) => {
+      const nextPage = prevState + 1;
+      return nextPage;
+    });
     scrollTop();
   };
 
@@ -40,7 +47,7 @@ const PaginationButton = ({ page, setPage }) => {
         <PaginationItem>
           <PaginationLink href="#">{page}</PaginationLink>
         </PaginationItem>
-        {page >= 8 ? null : (
+        {page == page ? (
           <>
             <PaginationItem>
               <PaginationEllipsis />
@@ -49,6 +56,8 @@ const PaginationButton = ({ page, setPage }) => {
               <PaginationNext onClick={handleNextPage} />
             </PaginationItem>
           </>
+        ) : (
+          null()
         )}
       </PaginationContent>
     </Pagination>

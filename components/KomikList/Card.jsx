@@ -24,7 +24,7 @@ const Card = ({ api, banyakData, title, href, titleHref }) => {
         </div>
       </div>
       <div className="container grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 md:px-6 drop-shadow-lg">
-        {api.data?.slice(0, banyakData).map((data, index) => {
+        {api?.slice(0, banyakData).map((data, index) => {
           return (
             <div
               className="relative group overflow-hidden rounded-lg md:basis-1/2 text-light-text dark:text-dark-text "
