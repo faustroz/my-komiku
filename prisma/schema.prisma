@@ -19,3 +19,11 @@ model Watchlist {
 
   @@unique([user_email, endpoint])
 }
+
+model Comment {
+  id         Int    @id @default(autoincrement())
+  endpoint   String
+  user_email String
+  username   String
+  comment    String
+}

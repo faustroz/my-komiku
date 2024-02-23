@@ -1,3 +1,5 @@
+import CommentBox from "@/components/KomikList/CommentBox";
+import CommentInput from "@/components/KomikList/CommentInput";
 import WatchListButton from "@/components/KomikList/WatchlistButton";
 import { getComicResponse } from "@/libs/api-libs";
 import { authUserSession } from "@/libs/auth-libs";
@@ -12,11 +14,12 @@ const Page = async ({ params: { endpoint } }) => {
   const watchlist = await prisma.watchlist.findFirst({
     where: { user_email: user?.email, endpoint: endpoint },
   });
+
   return (
-    <div className="flex flex-col min-h-screen ">
-      <div className="px-4 py-6 md:px-6 md:py-12 lg:py-16 flex-grow bg-light-background dark:bg-dark-background">
+    <main className="flex flex-col min-h-screen ">
+      <article className="px-4 py-6 md:px-6 md:py-12 lg:py-16 flex-grow bg-light-background dark:bg-dark-background">
         <div className="grid md:grid-cols-2 md:gap-6 lg:gap-12 max-w-6xl mx-auto items-start space-y-4 md:space-y-0 ">
-          <div className="relative w-full h-100 md:h-auto ">
+          <figure className="relative w-full h-100 md:h-auto ">
             <Image
               alt="Cover image"
               className="object-cover object-center rounded-lg "
@@ -25,16 +28,16 @@ const Page = async ({ params: { endpoint } }) => {
               width={500}
               height={500}
             />
-          </div>
-          <div className="space-y-4 text-light-dark dark:text-dark-text">
-            <div className="space-y-2">
+          </figure>
+          <section className="space-y-4 text-light-dark dark:text-dark-text">
+            <header className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tight">
                 {detailKomik.data.title}
               </h1>
               <p className="text-gray-500 dark:text-gray-400">
                 {detailKomik.data.author}
               </p>
-            </div>
+            </header>
             <div className="grid gap-2 md:grid-cols-2">
               <div>
                 <p className="flex items-center gap-2">
@@ -66,24 +69,35 @@ const Page = async ({ params: { endpoint } }) => {
                 </ul>
               </div>
             </div>
-            <div className="grid gap-4">
+            <section className="grid gap-4">
               <h2 className="text-2xl font-bold tracking-tight">Chapters</h2>
               <ul className="grid gap-2">
                 {detailKomik.data.chapter_list.map((chapter_list, index) => {
                   return (
-                    <li key={index}>
-                      <Link className="underline" href={chapter_list.endpoint}>
-                        {chapter_list.name}
-                      </Link>
+                    <li key={index} className="mb-2">
+                      <div className="border border-blue-300 hover:border-blue-500 rounded p-2 transition-colors duration-200">
+                        <Link
+                          className="underline text-blue-500 hover:text-blue-700"
+                          href={chapter_list.endpoint}
+                        >
+                          {chapter_list.name}
+                        </Link>
+                      </div>
                     </li>
                   );
                 })}
               </ul>
-            </div>
-          </div>
+            </section>
+          </section>
         </div>
-      </div>
-    </div>
+      </article>
+      <CommentInput
+        endpoint={endpoint}
+        user_email={user?.email}
+        username={user?.name}
+      />
+      <CommentBox endpoint={endpoint} />
+    </main>
   );
 };
 

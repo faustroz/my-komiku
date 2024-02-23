@@ -6,9 +6,9 @@ const Card = ({ api, banyakData, title, href, titleHref }) => {
   return (
     <section className="w-full py-12">
       <div className="container grid grid-cols-2 gap-12 px-4 md:px-6 mb-4 text-light-text dark:text-dark-text">
-        <Balancer>
-          <h1 className="text-3xl font-bold ">{title}</h1>
-        </Balancer>
+        <h1 className="text-3xl font-bold ">
+          <Balancer>{title}</Balancer>
+        </h1>
         <div className="flex items-center justify-end">
           <div className="grid gap-2">
             {href ? (

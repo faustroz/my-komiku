@@ -2,26 +2,27 @@ import Card from "@/components/KomikList/Card";
 import Slider from "@/components/KomikList/Slider";
 import { getComicResponse } from "../libs/api-libs";
 
+const getRandomizedComics = async (filter) => {
+  const response = await getComicResponse("list", `filter=${filter}`);
+  return response.data.sort(() => Math.random() - 0.5);
+};
+
 const Page = async () => {
-  const manga = await getComicResponse("list", "filter=manga");
-  const randomizedManga = manga.data.sort(() => Math.random() - 0.5);
-
   const slider = await getComicResponse("popular/page/1");
-  const manhwa = await getComicResponse("list", "filter=manhwa");
-  const randomizedManhwa = manhwa.data.sort(() => Math.random() - 0.5);
 
-  const manhua = await getComicResponse("list", "filter=manhua");
-  const randomizedManhua = manhua.data.sort(() => Math.random() - 0.5);
+  const randomizedManga = await getRandomizedComics("manga");
+  const randomizedManhwa = await getRandomizedComics("manhwa");
+  const randomizedManhua = await getRandomizedComics("manhua");
 
   return (
     <div>
       <section>
-        <Slider images={slider.data} />
+        <Slider images={slider.data} />;
         <Card
           api={randomizedManga}
           banyakData={4}
-          title="Recommended Manga"
-          titleHref="View All"
+          title="Editor's Picks: Manga"
+          titleHref="Explore All Manga"
           href="/comic-list/manga"
         />
       </section>
@@ -29,8 +30,8 @@ const Page = async () => {
         <Card
           api={randomizedManhwa}
           banyakData={4}
-          title="Recommended Manhwa"
-          titleHref="View All"
+          title="Must-Read Manhwa"
+          titleHref="Discover All Manhwa"
           href="/comic-list/manhwa"
         />
       </section>
@@ -38,9 +39,9 @@ const Page = async () => {
         <Card
           api={randomizedManhua}
           banyakData={4}
-          title="Recommended Manhua"
-          titleHref="View All"
-          href="/comic-list/manhua "
+          title="Trending Manhua"
+          titleHref="See All Manhua"
+          href="/comic-list/manhua"
         />
       </section>
     </div>
