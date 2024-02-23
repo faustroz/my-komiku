@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma";
+import Balancer from "react-wrap-balancer";
 
 const Page = async () => {
   const user = await authUserSession();
@@ -71,8 +72,10 @@ const Page = async () => {
                 className="rounded-lg overflow-hidden p-2 dark:text-dark-text bg-gray-100 border border-gray-200"
                 key={comment.id}
               >
-                <h3 className="text-sm font-medium">{comment.comment}</h3>
-                <p className="text-xs">Commented on: {comment.anime_title}</p>
+                <p className="text-xs">Commented on: {comment.comic_titles}</p>
+                <h3 className="text-sm font-medium">
+                  <Balancer>{comment.comment}</Balancer>
+                </h3>
               </div>
             ))}
           </div>
