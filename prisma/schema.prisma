@@ -21,9 +21,11 @@ model Watchlist {
 }
 
 model Comment {
-  id         Int    @id @default(autoincrement())
-  endpoint   String
-  user_email String
-  username   String
-  comment    String
+  id           Int     @id @default(autoincrement())
+  endpoint     String
+  user_email   String
+  user_profile String?
+  username     String
+  comic_titles String?
+  comment      String
 }

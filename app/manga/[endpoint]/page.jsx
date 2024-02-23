@@ -91,11 +91,15 @@ const Page = async ({ params: { endpoint } }) => {
           </section>
         </div>
       </article>
-      <CommentInput
-        endpoint={endpoint}
-        user_email={user?.email}
-        username={user?.name}
-      />
+      {user && (
+        <CommentInput
+          endpoint={endpoint}
+          user_email={user?.email}
+          username={user?.name}
+          user_profile={user?.image}
+          comic_titles={detailKomik.data.title}
+        />
+      )}
       <CommentBox endpoint={endpoint} />
     </main>
   );

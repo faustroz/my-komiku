@@ -1,8 +1,8 @@
 import prisma from "@/libs/prisma";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Card } from "../ui/card";
+import Balancer from "react-wrap-balancer";
 
-const CommentBox = async ({ endpoint }) => {
+const CommentBox = async ({ endpoint, animeTitle }) => {
   const comment = await prisma.comment.findMany({ where: { endpoint } });
   return (
     <div className="container mx-auto px-4 text-light-text dark:text-dark-text pb-5">
@@ -18,7 +18,7 @@ const CommentBox = async ({ endpoint }) => {
                 <Avatar className="border w-12 h-12 m-2">
                   <AvatarImage
                     alt={`Profile picture of ${comments.username}`}
-                    src="/placeholder-user.jpg"
+                    src={comments.user_profile}
                   />
                   <AvatarFallback>{comments.username}</AvatarFallback>
                 </Avatar>
@@ -27,11 +27,13 @@ const CommentBox = async ({ endpoint }) => {
                     <div className="font-semibold text-lg">
                       {comments.username}
                     </div>
-                    <div className="text-gray-500 text-sm dark:text-gray-400 ml-2">
-                      Commented on: {comments.comic_title}
+                    <div className="text-gray-500 text-sm dark:text-gray-400 ml-2 truncate">
+                      <Balancer>Commented on: {comments.comic_titles}</Balancer>
                     </div>
                   </div>
-                  <div className="text-gray-700">{comments.comment}</div>
+                  <div className="text-gray-700">
+                    <Balancer>{comments.comment}</Balancer>
+                  </div>
                 </div>
               </div>
             </div>

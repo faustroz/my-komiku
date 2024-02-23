@@ -5,12 +5,15 @@ import prisma from "@/libs/prisma";
 
 const Page = async () => {
   const user = await authUserSession();
+  const comments = await prisma.comment.findMany({
+    where: { user_email: user.email },
+  });
   const watchlist = await prisma.watchlist.findMany({
     where: { user_email: user.email },
   });
   return (
-    <div className="flex flex-col">
-      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+    <div className="flex flex-col bg-gray-100 p-4">
+      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6 bg-white rounded-lg shadow-md">
         <div className="grid justify-center items-center h-full gap-4 md:grid-cols-[150px_1fr] lg:grid-cols-[200px_1fr]">
           <div className="flex flex-col items-center">
             <div className="flex justify-center">
@@ -53,6 +56,23 @@ const Page = async () => {
                     </h3>
                   </div>
                 </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="p-4">
+          <h2 className="text-xl font-bold dark:text-dark-text">
+            Comment History
+          </h2>
+          <p className="text-sm dark:text-dark-text">Your past comments</p>
+          <div className="mt-4 space-y-4">
+            {comments.map((comment) => (
+              <div
+                className="rounded-lg overflow-hidden p-2 dark:text-dark-text bg-gray-100 border border-gray-200"
+                key={comment.id}
+              >
+                <h3 className="text-sm font-medium">{comment.comment}</h3>
+                <p className="text-xs">Commented on: {comment.anime_title}</p>
               </div>
             ))}
           </div>

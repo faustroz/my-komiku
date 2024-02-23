@@ -17,7 +17,7 @@ const Page = () => {
         </p>
         <Button
           className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-md border border-gray-200 bg-dark-primary text-sm font-medium shadow-sm transition-colors"
-          onClick={() => router.back()}
+          onClick={(e) => router.back()}
         >
           <ArrowLeft size={32} className="w-4 h-4" />
           Go Back
