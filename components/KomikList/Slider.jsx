@@ -1,67 +1,42 @@
 "use client";
+import * as React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import {
-  CaretLeft,
-  CaretRight,
-  DotOutline,
-} from "@phosphor-icons/react/dist/ssr";
-import Link from "next/link";
-import { useState } from "react";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Image from "next/image";
 
-const Slider = ({ images, title, titleHref }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const prevSlide = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const nextSlide = () => {
-    const isLastSlide = currentIndex === images.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const goToSlide = (slideIndex) => {
-    setCurrentIndex(slideIndex);
-  };
-
-  const limitedImages = images.slice(0, 4);
-
+const Slider = ({ api }) => {
   return (
-    <section className="max-w-full md:max-w-[1400px] h-[60vh] md:h-[780px] w-full m-auto py-16 px-4 relative group">
-      <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
-      <figure
-        className="w-full h-full rounded-2xl bg-cover bg-center duration-500"
-        style={{
-          backgroundImage: `url(${images[currentIndex].image})`,
-        }}
-      ></figure>
-      <nav>
-        <button className="hidden md:flex group-hover:flex absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-dark-primary text-dark-text cursor-pointer">
-          <CaretLeft
-            size={30}
-            onClick={prevSlide}
-            aria-label="Previous slide"
-          />
-        </button>
-        <button className="hidden md:flex group-hover:flex absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-dark-primary text-dark-text cursor-pointer">
-          <CaretRight size={30} onClick={nextSlide} aria-label="Next slide" />
-        </button>
-      </nav>
-      <div className="flex top-4 justify-center py-2">
-        {limitedImages.map((images, index) => (
-          <button
-            key={index}
-            className="text-2xl cursor-pointer text-light-text dark:text-dark-text"
-            onClick={() => goToSlide(index)}
-            aria-label={`Go to slide ${index}`}
-          >
-            <DotOutline size={30} weight="fill" />
-          </button>
-        ))}
-      </div>
-    </section>
+    <Carousel className="w-full max-w-xs">
+      <CarouselContent>
+        {api?.data.slice(0, 5).map((data, index) => {
+          return (
+            <CarouselItem key={index} className="m-2">
+              <div className="p-1">
+                <Card>
+                  <CardContent className="flex aspect-square border-none items-center justify-center p-8 bg-gray-100 rounded-lg">
+                    <Image
+                      src={data.image}
+                      alt="..."
+                      width={1500}
+                      height={1500}
+                    />
+                    <span className="text-3xl font-semibold">{index + 1}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          );
+        })}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
 };
 

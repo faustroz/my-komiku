@@ -26,6 +26,7 @@ const Page = async () => {
           href="/comic-list/manga"
         />
       </section>
+
       <section>
         <Card
           api={randomizedManhwa}
@@ -35,6 +36,7 @@ const Page = async () => {
           href="/comic-list/manhwa"
         />
       </section>
+
       <section>
         <Card
           api={randomizedManhua}
@@ -43,6 +45,8 @@ const Page = async () => {
           titleHref="See All Manhua"
           href="/comic-list/manhua"
         />
+        <Slider api={slider} />;
+        <Card api={randomizedManga} banyakData={4} />
       </section>
     </div>
   );

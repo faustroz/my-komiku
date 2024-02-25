@@ -4,7 +4,6 @@ import Image from "next/image";
 const Page = async ({ params }) => {
   const { chapter } = params;
   const chapterDetail = await getComicResponse(`chapter/ch/${chapter}/`);
-
   return (
     <div className="container mx-auto py-8 bg-#010104">
       <h1 className="text-3xl font-semibold mb-4 text-center text-white">

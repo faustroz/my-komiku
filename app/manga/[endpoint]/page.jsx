@@ -1,6 +1,8 @@
 import CommentBox from "@/components/KomikList/CommentBox";
 import CommentInput from "@/components/KomikList/CommentInput";
 import WatchListButton from "@/components/KomikList/WatchlistButton";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import { getComicResponse } from "@/libs/api-libs";
 import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma";
@@ -70,23 +72,25 @@ const Page = async ({ params: { endpoint } }) => {
               </div>
             </div>
             <section className="grid gap-4">
-              <h2 className="text-2xl font-bold tracking-tight">Chapters</h2>
-              <ul className="grid gap-2">
-                {detailKomik.data.chapter_list.map((chapter_list, index) => {
-                  return (
-                    <li key={index} className="mb-2">
-                      <div className="border border-blue-300 hover:border-blue-500 rounded p-2 transition-colors duration-200">
-                        <Link
-                          className="underline text-blue-500 hover:text-blue-700"
-                          href={chapter_list.endpoint}
-                        >
-                          {chapter_list.name}
-                        </Link>
+              <div className="h-72 w-full rounded-md border overflow-hidden">
+                <ScrollArea className="h-full w-full overflow-y-auto">
+                  <div className="p-4">
+                    <h4 className="mb-4 text-2xl font-semibold leading-none text-center">
+                      Chapter List
+                    </h4>
+                    {detailKomik.data.chapter_list.map((chapter, index) => (
+                      <div className="text-base " key={index}>
+                        <div className="rounded p-2 m-2 transition-colors duration-200 flex items-center bg-dark-background dark:bg-light-background text-dark-text dark:text-light-text">
+                          <Link className="underline " href={chapter.endpoint}>
+                            {chapter.name}
+                          </Link>
+                        </div>
                       </div>
-                    </li>
-                  );
-                })}
-              </ul>
+                    ))}
+                    <Separator className="my-2" />
+                  </div>
+                </ScrollArea>
+              </div>
             </section>
           </section>
         </div>

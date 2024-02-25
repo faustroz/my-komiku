@@ -56,15 +56,3 @@
   margin: 0;
   box-sizing: border-box;
 }
-
-img {
-  transition: 0.3s ease-all;
-  -webkit-transition: 0.3s ease-all;
-  -moz-transition: 0.3s ease-all;
-  -ms-transition: 0.3s ease-all;
-  -o-transition: 0.3s ease-all;
-}
-
-img:hover {
-  scale: 102%;
-}

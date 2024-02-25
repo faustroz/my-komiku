@@ -41,6 +41,7 @@ module.exports = {
         text: "#040316",
         background: "#fbfbfe",
         primary: "#2f27ce",
+        accent: "#443dff",
       },
       dark: {
         text: "#eae9fc",

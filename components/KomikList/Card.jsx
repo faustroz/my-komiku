@@ -1,7 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
+
 import { CaretRight } from "@phosphor-icons/react/dist/ssr";
 import Balancer from "react-wrap-balancer";
+import Image from "next/image";
+
 const Card = ({ api, banyakData, title, href, titleHref }) => {
   return (
     <section className="w-full py-12">
@@ -54,5 +56,4 @@ const Card = ({ api, banyakData, title, href, titleHref }) => {
     </section>
   );
 };
-
 export default Card;
